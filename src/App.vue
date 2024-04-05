@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <MenuBarComponent/>
-    <v-main class="ma-8">
+    <v-main class="ma-10">
       <router-view></router-view>
     </v-main>
     <FooterComponent/>
