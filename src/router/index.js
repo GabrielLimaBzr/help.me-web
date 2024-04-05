@@ -1,21 +1,31 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import UnidadeView from '../views/unidade/Unidades.vue'
+import UnidadesView from '../views/unidade/Unidades.vue'
+import LeiloesView from '../views/leilao/Leiloes.vue';
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'unidade',
-    component: UnidadeView
-  },
+    {
+        path: '/unidades',
+        name: 'unidades',
+        component: UnidadesView
+    },
+    {
+        path: '/leiloes',
+        name: 'leiloes',
+        component: LeiloesView
+    },
+    {
+        path: '*',
+        redirect: '/unidades'
+    }
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+    mode: 'hash',
+    base: process.env.BASE_URL,
+    routes
 })
 
 export default router
