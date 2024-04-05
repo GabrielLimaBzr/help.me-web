@@ -1,13 +1,7 @@
 <template>
   <v-app>
-    <v-app-bar app>
-      <v-toolbar-title>Menu</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn text to="/unidades">Unidades</v-btn>
-      <v-btn text to="/empresas">Empresas</v-btn>
-      <v-btn text to="/leiloes">Leilões</v-btn>
-    </v-app-bar>
-    <v-main class="ma-4">
+    <MenuBarComponent/>
+    <v-main class="ma-8">
       <router-view></router-view>
     </v-main>
     <FooterComponent/>
@@ -17,12 +11,14 @@
 <script>
 
 import FooterComponent from '@/components/FooterComponent.vue'
+import MenuBarComponent from '@/components/MenuBarComponent.vue'
 
 export default {
   name: 'App',
 
   components: {
-    FooterComponent
+    FooterComponent,
+    MenuBarComponent
   },
 
   data: () => ({
