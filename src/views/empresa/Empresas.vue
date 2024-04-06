@@ -24,7 +24,7 @@
               <v-text-field color="green" v-model="filter.cep" label="CEP" filled></v-text-field>
             </v-col>
 
-            <v-col cols="12" sm="12" md="12" class="text-right">
+            <v-col cols="12" sm="6" md="4" class="text-left">
               <v-btn color="success" class="mr-4" @click="searchFilter">
                 <v-icon class="mr-1">mdi-magnify</v-icon>Consultar
               </v-btn>
@@ -32,6 +32,10 @@
               <v-btn color="success" @click="reset" outlined>
                 <v-icon class="mr-1">mdi-backspace-reverse</v-icon>Limpar
               </v-btn>
+            </v-col>
+
+            <v-col cols="12" sm="6" md="8" class="text-right">
+              <v-btn class="success" @click="prepareCreate()">Adicionar</v-btn>
             </v-col>
           </v-row>
 
@@ -49,6 +53,22 @@
             </v-text-field>
           </v-toolbar-title>
         </v-toolbar>
+      </template>
+      <template v-slot:[`item.actions`]="{ item }">
+        <v-icon small class="mr-2" @click="prepareEdit(item)">
+          mdi-pencil
+        </v-icon>
+        <v-icon small class="mr-2" @click="prepareRead(item)">
+          mdi-eye
+        </v-icon>
+        <v-icon small @click="prepareEdit(item)">
+          mdi-delete
+        </v-icon>
+      </template>
+      <template v-slot:no-data>
+        <v-btn color="primary" @click="initialize">
+          Reset
+        </v-btn>
       </template>
     </v-data-table>
   </v-card>
@@ -76,6 +96,7 @@ export default {
       { text: 'Razão Social', value: 'fat' },
       { text: 'Telefone', value: 'carbs' },
       { text: 'Email', value: 'protein' },
+      { text: 'Actions', value: 'actions', sortable: false },
     ],
     filter: {},
     data: [],
@@ -87,6 +108,21 @@ export default {
     },
     reset() {
       this.$refs.form.reset()
+    },
+
+    initialize() {
+     console.log("init");
+    },
+
+    prepareCreate() {
+    },
+
+    prepareEdit(item) {
+      console.log(item);
+    },
+
+    prepareRead(item) {
+      console.log(item);
     },
   },
 };

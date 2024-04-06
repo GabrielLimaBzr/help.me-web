@@ -68,6 +68,7 @@ export default {
                 { text: 'Razão Social', value: 'fat' },
                 { text: 'Telefone', value: 'carbs' },
                 { text: 'Email', value: 'protein' },
+                { text: 'Actions', value: 'actions', sortable: false },
             ],
             data: [],
             unidade: {},
