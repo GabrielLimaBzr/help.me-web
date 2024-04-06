@@ -12,7 +12,7 @@
                 <v-container>
                     <v-row>
                         <v-col cols="12">
-                            <v-text-field label="Nome"  placeholder="nome" :disabled="modo == 'read'" v-model="unidadeLocal.name"
+                            <v-text-field color="green" label="Nome"  placeholder="nome" :disabled="modo == 'read'" v-model="unidadeLocal.name"
                                 hint="nome para unidade"></v-text-field>
                         </v-col>
                     </v-row>

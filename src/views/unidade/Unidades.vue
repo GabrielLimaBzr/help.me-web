@@ -3,15 +3,16 @@
         <v-card-title>
             <div class="d-flex justify-space-between" style="width: 100%;">
                 <span>Unidades</span>
-                <v-btn color="green" @click="prepareCreate()">Adicionar</v-btn>
+                <v-btn class="success" @click="prepareCreate()">Adicionar</v-btn>
             </div>
         </v-card-title>
-        <v-data-table :search="search" :headers="headers" :items="desserts" sort-by="id
+
+        <v-data-table :search="search" :headers="headers" :items="data" sort-by="id
         " class="elevation-2">
             <template v-slot:top>
                 <v-toolbar flat>
                     <v-toolbar-title style="width: 100%;">
-                        <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line
+                        <v-text-field color="green" v-model="search" append-icon="mdi-magnify" label="Search" single-line
                             hide-details>
                         </v-text-field>
                     </v-toolbar-title>
@@ -58,35 +59,28 @@ export default {
             search: '',
             headers: [
                 {
-                    text: 'Dessert (100g serving)',
+                    text: 'ID',
                     align: 'start',
                     sortable: false,
-                    value: 'name',
+                    value: 'id',
                 },
-                { text: 'Calories', value: 'calories' },
-                { text: 'Fat (g)', value: 'fat' },
-                { text: 'Carbs (g)', value: 'carbs' },
-                { text: 'Protein (g)', value: 'protein' },
-                { text: 'Iron (%)', value: 'iron' },
-                { text: 'Actions', value: 'actions', sortable: false },
+                { text: 'CNPJ', value: 'calories' },
+                { text: 'Razão Social', value: 'fat' },
+                { text: 'Telefone', value: 'carbs' },
+                { text: 'Email', value: 'protein' },
             ],
-            desserts: [],
+            data: [],
             unidade: {},
         }
     },
     created() {
         this.initialize();
     },
-    computed: {
-        formTitle() {
-            return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
-        },
-    },
 
     methods: {
         initialize() {
             getData().then((data) => {
-                this.desserts = data;
+                this.data = data;
             });
         },
 
