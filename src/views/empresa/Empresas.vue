@@ -36,7 +36,7 @@
             </v-col>
 
             <v-col cols="12" sm="6" md="8" class="text-right">
-              <v-btn class="success"  to="/empresa">Adicionar</v-btn>
+              <v-btn class="success" to="/empresa">Adicionar</v-btn>
             </v-col>
           </v-row>
 
@@ -103,16 +103,19 @@ export default {
     data: [],
   }),
 
+  created() {
+    this.initialize();
+  },
+
   methods: {
     searchFilter() {
-      this.$refs.form.validate()
     },
     reset() {
       this.$refs.form.reset()
     },
 
     initialize() {
-     console.log("init");
+      console.log("init empresas");
     },
 
     prepareEdit(item) {
