@@ -1,14 +1,16 @@
 <template>
-    <v-card color="green lighten-5" :elevation="3">
+    <v-card color="green lighten-5" :elevation="3" class="pa-4">
         <v-card-title>
             <div class="d-flex justify-space-between" style="width: 100%;">
                 <span>Unidades</span>
                 <v-btn class="success" @click="prepareCreate()">Adicionar</v-btn>
             </div>
         </v-card-title>
+        <v-card-subtitle> Consultar </v-card-subtitle>
+        <v-divider class="mx-4"></v-divider>
 
         <v-data-table :search="search" :headers="headers" :items="data" sort-by="id
-        " class="elevation-2">
+        " class="elevation-2 mt-4">
             <template v-slot:top>
                 <v-toolbar flat>
                     <v-toolbar-title style="width: 100%;">

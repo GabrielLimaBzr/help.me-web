@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import UnidadesView from '../views/unidade/Unidades.vue'
 import LeiloesView from '../views/leilao/Leiloes.vue';
 import EmpresasView from '../views/empresa/Empresas.vue';
+import EmpresasDetailView from '../views/empresa/Empresa.vue'
 
 Vue.use(VueRouter)
 
@@ -19,8 +20,13 @@ const routes = [
     },
     {
         path: '/empresas',
-        name: 'empresa',
+        name: 'empresas',
         component: EmpresasView
+    },
+    {
+        path: '/empresa',
+        name: 'empresa',
+        component: EmpresasDetailView
     },
     {
         path: '*',

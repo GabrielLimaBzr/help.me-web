@@ -1,7 +1,8 @@
 <template>
-  <v-card color="green lighten-5" :elevation="3">
+  <v-card color="green lighten-5" :elevation="3" class="pa-4">
     <v-card-title> Empresas </v-card-title>
     <v-card-subtitle> Consultar </v-card-subtitle>
+    <v-divider class="mx-4"></v-divider>
 
     <v-card-text>
       <div>
@@ -35,7 +36,7 @@
             </v-col>
 
             <v-col cols="12" sm="6" md="8" class="text-right">
-              <v-btn class="success" @click="prepareCreate()">Adicionar</v-btn>
+              <v-btn class="success"  to="/empresa">Adicionar</v-btn>
             </v-col>
           </v-row>
 
@@ -112,9 +113,6 @@ export default {
 
     initialize() {
      console.log("init");
-    },
-
-    prepareCreate() {
     },
 
     prepareEdit(item) {

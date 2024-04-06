@@ -29,7 +29,7 @@
 
 <script>
 export default {
-    name: 'UnidadeDetail',
+    name: 'UnidadeDetailView',
     data() {
         return {
             unidadeLocal: { ...this.unidade },
