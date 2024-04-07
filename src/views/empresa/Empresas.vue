@@ -14,7 +14,7 @@
             </v-col>
 
             <v-col cols="12" sm="6" md="3">
-              <v-text-field color="green" v-model="filter.cnpj" label="CNPJ" filled></v-text-field>
+              <v-text-field color="green" v-mask="'##.###.###/####-##'" v-model="filter.cnpj" label="CNPJ" filled></v-text-field>
             </v-col>
 
             <v-col cols="12" sm="6" md="3">
@@ -44,8 +44,8 @@
       </div>
     </v-card-text>
 
-    <v-data-table :search="search" :headers="headers" :items="data" sort-by="id
-        " class="elevation-2">
+    <v-data-table :search="search" :headers="headers" :items="data" sort-by="id" :sort-desc="true"
+        class="elevation-2">
       <template v-slot:top>
         <v-toolbar flat>
           <v-toolbar-title style="width: 100%;">
@@ -91,7 +91,7 @@ export default {
         sortable: false,
         value: 'id',
       },
-      { text: 'CNPJ', value: 'cnpj' },
+      { text: 'CNPJ', value: 'cnpj', sortable: false },
       { text: 'Razão Social', value: 'razaoSocial' },
       { text: 'Telefone', value: 'telefone' },
       { text: 'Email', value: 'email' },
