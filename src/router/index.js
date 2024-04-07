@@ -29,6 +29,11 @@ const routes = [
         component: EmpresasDetailView
     },
     {
+        path: '/empresa/:id',
+        name: 'empresaEdit',
+        component: EmpresasDetailView
+    },
+    {
         path: '*',
         redirect: '/unidades'
     }
