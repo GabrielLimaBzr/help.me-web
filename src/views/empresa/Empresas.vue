@@ -67,9 +67,7 @@
         </v-icon>
       </template>
       <template v-slot:no-data>
-        <v-btn color="primary" @click="initialize">
-          Reset
-        </v-btn>
+        <h1>Dados não encontrado</h1>
       </template>
     </v-data-table>
   </v-card>
@@ -77,7 +75,7 @@
 
 <script>
 
-
+import EmpresaService from '@/services/EmpresaService'
 export default {
   name: 'EmpresasView',
 
@@ -93,10 +91,10 @@ export default {
         sortable: false,
         value: 'id',
       },
-      { text: 'CNPJ', value: 'calories' },
-      { text: 'Razão Social', value: 'fat' },
-      { text: 'Telefone', value: 'carbs' },
-      { text: 'Email', value: 'protein' },
+      { text: 'CNPJ', value: 'cnpj' },
+      { text: 'Razão Social', value: 'razaoSocial' },
+      { text: 'Telefone', value: 'telefone' },
+      { text: 'Email', value: 'email' },
       { text: 'Actions', value: 'actions', sortable: false },
     ],
     filter: {},
@@ -104,18 +102,20 @@ export default {
   }),
 
   created() {
-    this.initialize();
+    this.searchFilter();
   },
 
   methods: {
-    searchFilter() {
-    },
     reset() {
       this.$refs.form.reset()
     },
 
-    initialize() {
-      console.log("init empresas");
+    async searchFilter() {
+      try {
+        this.data = await EmpresaService.getAll(this.filter);
+      } catch (error) {
+        console.error('Erro ao buscar empresas:', error);
+      }
     },
 
     prepareEdit(item) {

@@ -1,10 +1,18 @@
 <template>
   <v-app>
-    <MenuBarComponent/>
+    <v-snackbar v-model="snackbar.show" :color="snackbar.color" :timeout="snackbar.timeout" top>
+      {{ snackbar.message }}
+      <template v-slot:action="{ attrs }">
+        <v-btn color="white" text v-bind="attrs" @click="snackbar.show = false">
+          Fechar
+        </v-btn>
+      </template>
+    </v-snackbar>
+    <MenuBarComponent />
     <v-main class="ma-10">
       <router-view></router-view>
     </v-main>
-    <FooterComponent/>
+    <FooterComponent />
   </v-app>
 </template>
 
@@ -21,8 +29,15 @@ export default {
     MenuBarComponent
   },
 
-  data: () => ({
-    //
-  }),
+  data() {
+    return {
+      snackbar: {
+        show: false,
+        message: '',
+        color: '',
+        timeout: 6000, // tempo em milissegundos
+      },
+    };
+  },
 };
 </script>

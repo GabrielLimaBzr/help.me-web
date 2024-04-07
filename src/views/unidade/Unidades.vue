@@ -14,8 +14,8 @@
             <template v-slot:top>
                 <v-toolbar flat>
                     <v-toolbar-title style="width: 100%;">
-                        <v-text-field color="green" v-model="search" append-icon="mdi-magnify" label="Search" single-line
-                            hide-details>
+                        <v-text-field color="green" v-model="search" append-icon="mdi-magnify" label="Search"
+                            single-line hide-details>
                         </v-text-field>
                     </v-toolbar-title>
                 </v-toolbar>
@@ -32,20 +32,18 @@
                 </v-icon>
             </template>
             <template v-slot:no-data>
-                <v-btn color="primary" @click="initialize">
-                    Reset
-                </v-btn>
+                <h1>Dados não encontrado</h1>
             </template>
         </v-data-table>
 
-        <UnidadeDetail :dialog.sync="dialog" :modo="modo" :unidade="unidade"/>
+        <UnidadeDetail :dialog.sync="dialog" :modo="modo" :unidade="unidade" />
     </v-card>
 </template>
 
 <script>
 
 import UnidadeDetail from './UnidadeDetail.vue';
-import { getData } from '@/services/dataService';
+import UnidadeService from '@/services/UnidadeService';
 export default {
     name: 'UnidadesView',
 
@@ -66,10 +64,9 @@ export default {
                     sortable: false,
                     value: 'id',
                 },
-                { text: 'CNPJ', value: 'calories' },
-                { text: 'Razão Social', value: 'fat' },
-                { text: 'Telefone', value: 'carbs' },
-                { text: 'Email', value: 'protein' },
+                { text: 'Nome', value: 'nome' },
+                { text: 'Criado em', value: 'createdAt', sortable: false },
+                { text: 'Atualizado em', value: 'updatedAt', sortable: false },
                 { text: 'Actions', value: 'actions', sortable: false },
             ],
             data: [],
@@ -81,10 +78,8 @@ export default {
     },
 
     methods: {
-        initialize() {
-            getData().then((data) => {
-                this.data = data;
-            });
+        async initialize() {
+            this.data = await UnidadeService.getAll();
         },
 
         prepareCreate() {
