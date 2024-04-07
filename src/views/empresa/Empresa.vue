@@ -11,51 +11,65 @@
 
           <v-row>
             <v-col cols="12" sm="12" md="9">
-              <v-text-field color="green" v-model="entity.razaoSocial" label="Razão Social" filled :counter="64" required :rules="nonNull"></v-text-field>
+              <v-text-field required color="green" v-model="entity.razaoSocial" label="Razão Social" filled :counter="64"
+                maxlength="64" :rules="[rules.required, rules.min]"></v-text-field>
+            </v-col>
+
+            <v-col cols="12" sm="12" md="3">
+              <v-text-field required v-mask="'##.###.###/####-##'" :rules="[rules.required]" :counter="18" color="green"
+                v-model="entity.cnpj" label="CNPJ" filled></v-text-field>
+            </v-col>
+
+            <v-col cols="12" sm="8" md="6">
+              <v-text-field color="green" v-model="entity.logradouro" label="Logradouro" filled maxlength="64"
+                :counter="64"></v-text-field>
+            </v-col>
+
+            <v-col cols="12" sm="4" md="2">
+              <v-text-field color="green" v-model="entity.numero" label="Número" filled maxlength="10" :counter="10">
+              </v-text-field>
+            </v-col>
+
+            <v-col cols="12" sm="6" md="4">
+              <v-text-field color="green" v-model="entity.complemento" label="Complemento" filled maxlength="64"
+                :counter="64"></v-text-field>
+            </v-col>
+
+            <v-col cols="12" sm="6" md="6">
+              <v-text-field color="green" v-model="entity.bairro" label="Bairro" filled maxlength="64"
+                :counter="64"></v-text-field>
             </v-col>
 
             <v-col cols="12" sm="6" md="3">
-              <v-text-field v-mask="'##.###.###/####-##'" :rules="nonNull" :counter="18" color="green" v-model="entity.cnpj" label="CNPJ" filled></v-text-field>
+              <v-text-field color="green" v-model="entity.cep" label="CEP" filled v-mask="'#####-###'"
+                placeholder="00000-000"></v-text-field>
             </v-col>
 
             <v-col cols="12" sm="6" md="3">
-              <v-text-field color="green" v-model="entity.logradouro" label="Logradouro" filled></v-text-field>
+              <v-text-field color="green" v-mask="'(##) ####-####'" placeholder="(00) 0000-0000"
+                v-model="entity.telefone" label="Telefone" filled></v-text-field>
             </v-col>
 
             <v-col cols="12" sm="6" md="3">
-              <v-text-field color="green" v-model="entity.numero" label="Número" filled></v-text-field>
+              <v-text-field color="green" required :rules="[rules.email]" v-model="entity.email" label="Email" filled
+                maxlength="254"></v-text-field>
             </v-col>
 
             <v-col cols="12" sm="6" md="3">
-              <v-text-field color="green" v-model="entity.complemento" label="Complemento" filled></v-text-field>
+              <v-text-field color="green" v-model="entity.site" label="Site" filled maxlength="254"
+                :counter="254"></v-text-field>
             </v-col>
 
             <v-col cols="12" sm="6" md="3">
-              <v-text-field color="green" v-model="entity.bairro" label="Bairro" filled></v-text-field>
+              <v-text-field color="green" required maxlength="20" :counter="20" :rules="[rules.required]"
+                v-model="entity.usuario" label="Usuário" filled></v-text-field>
             </v-col>
 
             <v-col cols="12" sm="6" md="3">
-              <v-text-field color="green" v-model="entity.cep" label="CEP" filled></v-text-field>
-            </v-col>
-
-            <v-col cols="12" sm="6" md="3">
-              <v-text-field color="green" v-model="entity.telefone" label="Telefone" filled></v-text-field>
-            </v-col>
-
-            <v-col cols="12" sm="6" md="3">
-              <v-text-field color="green" v-model="entity.email" label="Email" filled></v-text-field>
-            </v-col>
-
-            <v-col cols="12" sm="6" md="3">
-              <v-text-field color="green" v-model="entity.site" label="Site" filled></v-text-field>
-            </v-col>
-
-            <v-col cols="12" sm="6" md="3">
-              <v-text-field color="green" v-model="entity.usuario" label="Usuário" filled></v-text-field>
-            </v-col>
-
-            <v-col cols="12" sm="6" md="3">
-              <v-text-field color="green" v-model="entity.senha" label="Usuário" filled></v-text-field>
+              <v-text-field v-model="entity.senha" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" 
+              :rules="[rules.required, rules.min]" :type="show1 ? 'text' : 'password'" name="input-10-1"
+              label="Senha" hint="Mínimo 3 caracteres" counter filled
+              @click:append="show1 = !show1" color="green"></v-text-field>
             </v-col>
 
             <v-col cols="12">
@@ -87,18 +101,19 @@ export default {
       valid: true,
       subtitle: 'Cadastrar',
       entity: {},
-
-      nonNull: [
-        v => !!v || 'Campo requerido',
-        v => (v && v.length >= 3) || 'O campo deve ter menos de 3 caracteres',
-      ],
+      rules: {
+        required: v => !!v || 'Campo requerido.',
+        min: v => typeof v === 'string' && v.length >= 3 || 'O campo deve ter mais de 3 caracteres',
+        email: v => /.+@.+\..+/.test(v) || 'O email deve ser válido',
+      },
+      show1: false,
     }
   },
 
   methods: {
     save() {
+      this.$refs.form.validate()
       console.log(this.$refs.form.validate());
-      
       console.log(this.entity);
     }
   },
