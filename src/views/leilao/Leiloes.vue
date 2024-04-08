@@ -1,5 +1,5 @@
 <template>
-  <v-card color="green lighten-5" :elevation="3" class="pa-4">
+  <v-card color="svariant" :elevation="3" class="pa-4">
     <v-card-title> Leilões </v-card-title>
     <v-card-subtitle> Consultar </v-card-subtitle>
     <v-divider class="mx-4"></v-divider>
@@ -49,9 +49,7 @@
         </v-toolbar>
       </template>
       <template v-slot:no-data>
-        <v-btn color="primary" @click="initialize">
-          Reset
-        </v-btn>
+        <h1>Dados não encontrado</h1>
       </template>
     </v-data-table>
   </v-card>

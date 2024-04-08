@@ -1,5 +1,5 @@
 <template>
-    <v-card color="green lighten-5" :elevation="3" class="pa-4">
+    <v-card color="svariant" :elevation="3" class="pa-4">
         <v-card-title>
             <div class="d-flex justify-space-between" style="width: 100%;">
                 <span>Unidades</span>
@@ -79,7 +79,11 @@ export default {
 
     methods: {
         async initialize() {
-            this.data = await UnidadeService.getAll();
+            try {
+                this.data = await UnidadeService.getAll();
+            } catch (error) {
+                console.error('Erro ao carregar unidades:', error);
+            }
         },
 
         prepareCreate() {

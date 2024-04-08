@@ -1,13 +1,5 @@
 <template>
-  <v-app>
-    <v-snackbar v-model="snackbar.show" :color="snackbar.color" :timeout="snackbar.timeout" top>
-      {{ snackbar.message }}
-      <template v-slot:action="{ attrs }">
-        <v-btn color="white" text v-bind="attrs" @click="snackbar.show = false">
-          Fechar
-        </v-btn>
-      </template>
-    </v-snackbar>
+  <v-app class="bg-something">
     <MenuBarComponent />
     <v-main class="ma-10">
       <router-view></router-view>
@@ -31,12 +23,6 @@ export default {
 
   data() {
     return {
-      snackbar: {
-        show: false,
-        message: '',
-        color: '',
-        timeout: 6000, // tempo em milissegundos
-      },
     };
   },
 };

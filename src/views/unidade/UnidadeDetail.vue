@@ -1,7 +1,7 @@
 <template>
     <v-dialog v-model="dialogValue" max-width="600px">
-        <v-card>
-            <v-card-title>
+        <v-card color="">
+            <v-card-title class="text-h5 svariant">
                 <span>{{ modo }} Unidade</span>
                 <v-spacer></v-spacer>
                 <v-btn icon @click="fecharDialog">

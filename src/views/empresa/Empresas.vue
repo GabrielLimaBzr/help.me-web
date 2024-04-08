@@ -1,5 +1,5 @@
 <template>
-  <v-card color="green lighten-5" :elevation="3" class="pa-4">
+  <v-card color="svariant" :elevation="3" class="pa-4">
     <v-card-title> Empresas </v-card-title>
     <v-card-subtitle> Consultar </v-card-subtitle>
     <v-divider class="mx-4"></v-divider>
